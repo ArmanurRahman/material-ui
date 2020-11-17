@@ -92,9 +92,9 @@ O suporte para componentes de classe, sem o encaminhamento de refs, na proprieda
   +theme.palette.augmentColor({ color: red, name: 'brand' });
   ```
 
-#### Upgrade helper
+#### Utilitário para atualização
 
-For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade to the new theme structure.
+Para uma transição mais suave, o utilitário `adaptV4Theme` permite que você atualize de forma iterativa algumas das alterações do tema para a nova estrutura do tema.
 
 ```diff
 -import { createMuiTheme } from '@material-ui/core/styles';
@@ -107,11 +107,11 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 +}));
 ```
 
-The following changes are supported by the adapter.
+As seguintes alterações são aplicadas por este utilitário adaptador.
 
-#### Changes
+#### Alterações
 
-- The "gutters" abstraction hasn't proven to be used frequently enough to be valuable.
+- A abstração com a função "gutters" não provou ser utilizada com frequência suficiente para ser valiosa.
 
   ```diff
   -theme.mixins.gutters(),
@@ -123,21 +123,21 @@ The following changes are supported by the adapter.
   +},
   ```
 
-- `theme.spacing` now returns single values with px units by default. This change improves the integration with styled-components & emotion.
+- `theme.spacing` agora retorna valores únicos com a unidade px por padrão. Esta alteração melhora a integração com styled-components & emotion.
 
-  Before:
+  Antes:
 
   ```js
   theme.spacing(2) => 16
   ```
 
-  After:
+  Depois:
 
   ```js
   theme.spacing(2) => '16px'
   ```
 
-- The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
+- O `theme.palette.type` foi renomeado para `theme.palette.mode`, para melhor seguir o termo "modo escuro",  que é geralmente usado para descrever este recurso.
 
   ```diff
   import { createMuiTheme } from '@material-ui/core/styles';
@@ -145,7 +145,7 @@ The following changes are supported by the adapter.
   +const theme = createMuiTheme({palette: { mode: 'dark' }}),
   ```
 
-- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed. If you depend on it, you can add it back:
+- A chave `theme.palette.text.hint` não era usada em componentes do Material-UI e foi removida. Se você depende dela, você pode adicioná-la de volta:
 
   ```diff
   import { createMuiTheme } from '@material-ui/core/styles';
@@ -156,7 +156,7 @@ The following changes are supported by the adapter.
   +});
   ```
 
-- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
+- As definições dos componentes dentro do tema foi reestruturada sob a chave  `components`, para permitir que as pessoas possam descobrir de uma maneira facilitada as definições sobre um componente.
 
 1. `props`
 
@@ -202,7 +202,7 @@ const theme = createMuiTheme({
 
 ### Estilos
 
-- Renamed `fade` to `alpha` to better describe its functionality. The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
+- Renomeado `fade` para `alpha` para descrever melhor a sua funcionalidade. O nome anterior estava gerando confusão quando a cor de entrada já tinha um valor alfa. O utilitário **sobrescreve** o valor alfa da cor.
 
 ```diff
 - import { fade } from '@material-ui/core/styles';
@@ -214,9 +214,9 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
-### Uma barra de aplicativos proeminente.
+### AppBar
 
-- [AppBar] Remove z-index when position static and relative
+- [AppBar] Remova z-index quando a posição for estática e relativa
 
 ### Alerta
 
@@ -240,8 +240,8 @@ const classes = makeStyles(theme => ({
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
   ```
 
-- Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
-- `renderOption` should now return the full DOM structure of the option. It makes customizations easier. You can recover from the change with:
+- Remova a propriedade `debug`. Existem algumas alternativas mais simples: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), ou React devtools prop setter.
+- `renderOption` deve agora retornar uma estrutura completa do DOM da opção. Isso torna as customizações mais fáceis. Você pode aplicar a alteração com:
 
   ```diff
   <Autocomplete
@@ -264,7 +264,7 @@ const classes = makeStyles(theme => ({
 
 ### Avatar
 
-- Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Renomeie `circle` para `circular` para obter consistência. Os valores possíveis devem ser adjetivos e não substantivos:
 
   ```diff
   -<Avatar variant="circle">
@@ -273,7 +273,7 @@ const classes = makeStyles(theme => ({
   +<Avatar classes={{ circular: 'className' }}>
   ```
 
-- Move the AvatarGroup from the lab to the core.
+- Mova o componente AvatarGroup do lab para o core.
 
   ```diff
   -import AvatarGroup from '@material-ui/lab/AvatarGroup';
@@ -282,7 +282,7 @@ const classes = makeStyles(theme => ({
 
 ### Badge
 
-- Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+- Renomeie `circle` para `circular` e `rectangle` para`rectangular` para obter consistência. Os valores possíveis devem ser adjetivos e não substantivos:
 
   ```diff
   -<Badge overlap="circle">
@@ -309,27 +309,27 @@ const classes = makeStyles(theme => ({
 
 ### BottomNavigation
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`.
+- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`.
 
   ```diff
   -<BottomNavigation onChange={(event: React. ChangeEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React. SyntheticEvent) => {}} />
   ```
 
-###  Box
+### Box
 
-- The system props have been deprecated in v5, and replaced with the `sx` prop.
+- As propriedades de sistema foram descontinuadas na v5, e substituídas pela propriedade `sx`.
 
 ```diff
 -<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
 +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
 ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
+[Este codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#box-sx-prop) atualizará automaticamente seu código para a nova sintaxe.
 
 ### Button
 
-- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
+- A propriedade  `color` do botão agora é "primary" por padrão, e "default" foi removido. Isto torna o botão mais próximo da especificação do Material Design e simplifica a API.
 
   ```diff
   -<Button color="primary" />
@@ -338,9 +338,9 @@ const classes = makeStyles(theme => ({
   +<Button />
   ```
 
-### Conjunto de progressos
+### CircularProgress
 
-- The `static` variant has been merged into the `determinate` variant, with the latter assuming the appearance of the former. The removed variant was rarely useful. It was an exception to Material Design, and was removed from the specification.
+- A variante `static` foi mesclada na variante `determinate`, assumindo a última a aparência da primeira. A variante removida raramente foi útil. Era uma exceção para Material Design, e foi removida da especificação.
 
   ```diff
   -<CircularProgress variant="determinate" />
@@ -351,11 +351,11 @@ const classes = makeStyles(theme => ({
   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
   ```
 
-> NB: If you had previously customized determinate, your customizations are probably no longer valid. Please remove them.
+> NB: Se você já tinha customizado como "determinate", suas customizações provavelmente não são mais válidas. Por favor, remova-as.
 
 ### Collapse
 
-- The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
+- A propriedade `collapsedHeight` foi renomeada para `collapsedSize` para dar suporte para a direção horizontal.
 
   ```diff
   -<Collapse collapsedHeight={40}>
@@ -460,7 +460,7 @@ const classes = makeStyles(theme => ({
   +</Accordion>
   ```
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`.
+- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`.
 
   ```diff
   -<Accordion onChange={(event: React. ChangeEvent<{}>, expanded: boolean) => {}} />
@@ -483,7 +483,7 @@ const classes = makeStyles(theme => ({
 
 ### Fab
 
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Rename `round` to `circular` for consistency. Os valores possíveis devem ser adjetivos e não substantivos:
 
   ```diff
   -<Fab variant="round">
@@ -580,7 +580,7 @@ const classes = makeStyles(theme => ({
   +import usePagination from '@material-ui/core/usePagination';
   ```
 
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Rename `round` to `circular` for consistency. Os valores possíveis devem ser adjetivos e não substantivos:
 
   ```diff
   -<Pagination shape="round">
@@ -693,7 +693,7 @@ const classes = makeStyles(theme => ({
   ```
 
 
-- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns: 
+- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. Os valores possíveis devem ser adjetivos e não substantivos: 
   
   
 
@@ -711,7 +711,7 @@ const classes = makeStyles(theme => ({
 
 ### Slider
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`. 
+- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`. 
   
 
   ```diff
@@ -850,7 +850,7 @@ const classes = makeStyles(theme => ({
 
 ### Abas
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`. 
+- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`. 
   
   
 
