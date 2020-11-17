@@ -106,7 +106,7 @@ import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
-import createEmotionServer from 'create-emotion-server';
+import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';
 import cache from './cache';
@@ -116,7 +116,7 @@ const { extractCritical } = createEmotionServer(cache);
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
-  // 将组件渲染成字符串
+  // Render the component to a string.
   const html = ReactDOMServer.renderToString(
     sheets.collect(
       <CacheProvider value={cache}>
