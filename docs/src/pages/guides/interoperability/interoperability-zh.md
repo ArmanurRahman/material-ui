@@ -64,7 +64,7 @@ const cache = createCache({
 export default function PlainCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Your component tree. 现在你可以覆盖 Material-UI 的样式。 */}
+      {/* 这里是你的组件树。 现在你可以覆盖 Material-UI 的样式。 */}
     </CacheProvider>
   );
 }
