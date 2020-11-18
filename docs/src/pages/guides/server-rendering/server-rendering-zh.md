@@ -116,7 +116,7 @@ const { extractCritical } = createEmotionServer(cache);
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
-  // Render the component to a string.
+  // 将组件渲染成字符串
   const html = ReactDOMServer.renderToString(
     sheets.collect(
       <CacheProvider value={cache}>
