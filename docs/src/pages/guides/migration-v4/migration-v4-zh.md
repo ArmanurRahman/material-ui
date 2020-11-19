@@ -229,6 +229,8 @@ const classes = makeStyles(theme => ({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
+  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 ### Autocomplete 自动补全组件
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
@@ -239,6 +241,8 @@ const classes = makeStyles(theme => ({
   +import Autocomplete from '@material-ui/core/Autocomplete';
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
   ```
+
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - 移除 `debug` 属性。 有几个更简单的方式来使用它：`open={true}`，Chrome 开发者调试工具 [“Emulate focused”](https://twitter.com/sulco/status/1305841873945272321)，或者使用 React devtools prop setter。
 - `renderOption` 现在应该返回选项的完整 DOM 结构。 这样做可以让定制组件变得更加容易。 你可以通过下面方法进行回滚：
@@ -325,7 +329,7 @@ const classes = makeStyles(theme => ({
 +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
 ```
 
-[该编码器（codemod）](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#box-sx-prop) 将自动将你的代码更新为新的语法。
+[该编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) 将自动将你的代码更新为新的语法。
 
 ### Button
 
@@ -580,6 +584,8 @@ const classes = makeStyles(theme => ({
   +import usePagination from '@material-ui/core/usePagination';
   ```
 
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 - 为保持一致性，我们将 `round` 重命名为 `circular`。 可能的值应该是形容词，而不是名词。
 
   ```diff
@@ -650,6 +656,8 @@ const classes = makeStyles(theme => ({
   +import Rating from '@material-ui/core/Rating';
   ```
 
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 - 为提高无障碍的可访问性，我们更改了默认的空图标。 如果你有自定义了 `icon` 属性，但没有使用 `emptyIcon` 属性，你可以用以下方法还原到以前的行为：
 
   ```diff
@@ -690,6 +698,8 @@ const classes = makeStyles(theme => ({
   +import Skeleton from '@material-ui/core/Skeleton';
   ```
 
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 - 为保持一致性，我们将 `circle` 重命名为 `circular`，`rect` 重命名为 `rectangular`。 可能的值应该是形容词，而不是名词。
 
   ```diff
@@ -708,6 +718,20 @@ const classes = makeStyles(theme => ({
   ```diff
   -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  ```
+
+- The `ValueLabelComponent` prop is now part of the `components` prop.
+
+  ```diff
+  -<Slider ValueLabelComponent={CustomValueLabel} />
+  +<Slider components={{ ValueLabel: CustomValueLabel }} />
+  ```
+
+- The `ThumbComponent` prop is not part of the `components` prop.
+
+  ```diff
+  -<Slider ThumbComponent={CustomThumb} />
+  +<Slider components={{ Thumb: CustomThumb }} />
   ```
 
 ### Snackbar（消息条）
@@ -752,6 +776,8 @@ const classes = makeStyles(theme => ({
   +import SpeedDialAction from '@material-ui/core/SpeedDialAction';
   +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
   ```
+
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 ### Stepper 步骤条组件
 
@@ -842,7 +868,7 @@ const classes = makeStyles(theme => ({
   +<TextField value="Outlined" />
   ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#textfield-variant-prop) 可以自动升级你的代码。
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#textfield-variant-prop) 可以自动升级你的代码。
 
 - 为保持与 HTML 属性的一致性，我们将 `rowsMax` 属性重命名为 `maxRows`。
 
@@ -909,6 +935,8 @@ const classes = makeStyles(theme => ({
   +import ToggleButton from '@material-ui/core/ToggleButton';
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
+
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 ### Tooltip
 
