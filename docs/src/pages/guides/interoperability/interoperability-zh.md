@@ -34,7 +34,7 @@
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSlider.css';
 
 export default function PlainCssSlider() {
@@ -98,7 +98,7 @@ export default function PlainCssPriority() {
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSliderDeep1.css';
 
 export default function PlainCssSliderDeep1() {
@@ -133,7 +133,7 @@ export default function PlainCssSliderDeep1() {
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSliderDeep2.css';
 
 export default function PlainCssSliderDeep2() {
@@ -172,7 +172,7 @@ export default function PlainCssSliderDeep2() {
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './GlobalCssSlider.css';
 
 export default function GlobalCssSlider() {
@@ -231,7 +231,7 @@ export default function GlobalCssPriority() {
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './GlobalCssSliderDeep.css';
 
 export default function GlobalCssSliderDeep() {
@@ -255,7 +255,7 @@ export default function GlobalCssSliderDeep() {
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
@@ -281,7 +281,7 @@ export default function StyledComponents() {
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
@@ -311,7 +311,7 @@ export default function StyledComponentsDeep1() {
 ```jsx
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 const CustomizedSlider = styled((props) => (
   <Slider componentsProps={{ thumb: { className: 'thumb' } }} {...props} />
@@ -389,8 +389,8 @@ const CustomizedSlider = styled(Slider)(
 
 ```jsx
 import React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
-// webpack，parcel 或者其他的打包程序将把 CSS 注入到页面中。
+import Slider from '@material-ui/core/Slider';
+// webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSlider.module.css';
 
 export default function CssModulesSlider() {
@@ -454,9 +454,9 @@ export default function CssModulesPriority() {
 
 ```jsx
 import React from 'react';
-// webpack，parcel 或者其他的打包程序将把 CSS 注入到页面中。
+// webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 export default function CssModulesSliderDeep1() {
   return (
@@ -490,9 +490,9 @@ export default function CssModulesSliderDeep1() {
 
 ```jsx
 import React from 'react';
-// webpack，parcel 或者其他的打包程序将把 CSS 注入到页面中。
+// webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 export default function CssModulesSliderDeep2() {
   return (
@@ -523,7 +523,7 @@ Emotion 的 **css()** 方法与 Material-UI 无缝协作。
 ```jsx
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 export default function EmotionCSS() {
   return (
