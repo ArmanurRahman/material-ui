@@ -229,6 +229,8 @@ const classes = makeStyles(theme => ({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
+  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 ### Autocompletar
 
 - Mova o componente do lab para o core. O componente agora é estável.
@@ -239,6 +241,8 @@ const classes = makeStyles(theme => ({
   +import Autocomplete from '@material-ui/core/Autocomplete';
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
   ```
+
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - Remova a propriedade `debug`. Existem algumas alternativas mais simples: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), ou React devtools prop setter.
 - `renderOption` deve agora retornar uma estrutura completa do DOM da opção. Isso torna as customizações mais fáceis. Você pode aplicar a alteração com:
@@ -325,7 +329,7 @@ const classes = makeStyles(theme => ({
 +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
 ```
 
-[Este codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#box-sx-prop) atualizará automaticamente seu código para a nova sintaxe.
+[Este codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) atualizará automaticamente seu código para a nova sintaxe.
 
 ### Button
 
@@ -580,6 +584,8 @@ const classes = makeStyles(theme => ({
   +import usePagination from '@material-ui/core/usePagination';
   ```
 
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 - Rename `round` to `circular` for consistency. Os valores possíveis devem ser adjetivos e não substantivos:
 
   ```diff
@@ -650,6 +656,8 @@ const classes = makeStyles(theme => ({
   +import Rating from '@material-ui/core/Rating';
   ```
 
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 - Change the default empty icon to improve accessibility. If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
 
   ```diff
@@ -693,6 +701,8 @@ const classes = makeStyles(theme => ({
   ```
 
 
+You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency. Os valores possíveis devem ser adjetivos e não substantivos: 
   
   
@@ -713,10 +723,31 @@ const classes = makeStyles(theme => ({
 
 - TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`. 
   
+  
 
   ```diff
   -<Slider onChange={(event: React. ChangeEvent<{}>, value: unknown) => {}} />
   +<Slider onChange={(event: React. SyntheticEvent, value: unknown) => {}} />
+  ```
+
+
+- The `ValueLabelComponent` prop is now part of the `components` prop. 
+  
+  
+
+  ```diff
+  -<Slider ValueLabelComponent={CustomValueLabel} />
+  +<Slider components={{ ValueLabel: CustomValueLabel }} />
+  ```
+
+
+- The `ThumbComponent` prop is not part of the `components` prop. 
+  
+  
+
+  ```diff
+  -<Slider ThumbComponent={CustomThumb} />
+  +<Slider components={{ Thumb: CustomThumb }} />
   ```
 
 
@@ -764,6 +795,7 @@ const classes = makeStyles(theme => ({
 
 - Mova o componente do lab para o core. O componente agora é estável. 
   
+  
 
   ```diff
   -import SpeedDial from '@material-ui/lab/SpeedDial';
@@ -774,6 +806,8 @@ const classes = makeStyles(theme => ({
   +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
   ```
 
+
+You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 
 
@@ -891,7 +925,7 @@ const classes = makeStyles(theme => ({
   ```
 
 
-[This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#textfield-variant-prop) will automatically update your code.
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#textfield-variant-prop) will automatically update your code.
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes. 
   
@@ -974,6 +1008,7 @@ const classes = makeStyles(theme => ({
 
 - Mova o componente do lab para o core. O componente agora é estável. 
   
+  
 
   ```diff
   -import ToggleButton from '@material-ui/lab/ToggleButton';
@@ -982,6 +1017,8 @@ const classes = makeStyles(theme => ({
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
+
+You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 
 
