@@ -229,7 +229,7 @@ const classes = makeStyles(theme => ({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
-  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 ### Autocomplete 自动补全组件
 
@@ -242,7 +242,7 @@ const classes = makeStyles(theme => ({
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
   ```
 
-  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  你可以使用我们的 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 - 移除 `debug` 属性。 有几个更简单的方式来使用它：`open={true}`，Chrome 开发者调试工具 [“Emulate focused”](https://twitter.com/sulco/status/1305841873945272321)，或者使用 React devtools prop setter。
 - `renderOption` 现在应该返回选项的完整 DOM 结构。 这样做可以让定制组件变得更加容易。 你可以通过下面方法进行回滚：
@@ -393,6 +393,20 @@ const classes = makeStyles(theme => ({
   +    onExited,
   +    onExiting,
   +  }}
+  />
+  ```
+
+- 因为属性重复，所以我们移除了 `disableBackdropClick`。 当 `reason === 'backdropClick'` 时，将会忽略 `onClose` 的关闭事件。
+
+  ```diff
+  <Dialog
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
   />
   ```
 
@@ -569,6 +583,33 @@ const classes = makeStyles(theme => ({
 
 ### Modal
 
+- 因为属性重复，所以我们移除了 `disableBackdropClick`。 当 `reason === 'backdropClick'` 时，将会忽略 `onClose` 的关闭事件。
+
+  ```diff
+  <Modal
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
+  />
+  ```
+
+- 因为属性重复，所以我们移除了 `onEscapeKeyDown`。 Use `onClose` with `reason === "escapeKeyDown"` instead.
+
+  ```diff
+  <Modal
+  - onEscapeKeyDown={handleEscapeKeyDown}
+  + onClose={(event, reason) => {
+  +   if (reason === 'escapeKeyDown') {
+  +     handleEscapeKeyDown(event);
+  +   }
+  + }}
+  />
+  ```
+
 - 移除 `onRendered` 属性。 具体迁移方法根据你的使用情况而定，你可以在子元素上使用 [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs)，也可以在子组件中使用 effect 钩子。
 
 ### 分页组件 Pagination
@@ -584,7 +625,7 @@ const classes = makeStyles(theme => ({
   +import usePagination from '@material-ui/core/usePagination';
   ```
 
-  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  你可以使用我们的 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 - 为保持一致性，我们将 `round` 重命名为 `circular`。 可能的值应该是形容词，而不是名词。
 
@@ -656,7 +697,7 @@ const classes = makeStyles(theme => ({
   +import Rating from '@material-ui/core/Rating';
   ```
 
-  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  你可以使用我们的 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 - 为提高无障碍的可访问性，我们更改了默认的空图标。 如果你有自定义了 `icon` 属性，但没有使用 `emptyIcon` 属性，你可以用以下方法还原到以前的行为：
 
@@ -698,7 +739,7 @@ const classes = makeStyles(theme => ({
   +import Skeleton from '@material-ui/core/Skeleton';
   ```
 
-  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  你可以使用我们的 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 - 为保持一致性，我们将 `circle` 重命名为 `circular`，`rect` 重命名为 `rectangular`。 可能的值应该是形容词，而不是名词。
 
@@ -720,14 +761,14 @@ const classes = makeStyles(theme => ({
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- The `ValueLabelComponent` prop is now part of the `components` prop.
+- `ValueLabelComponent` 属性现在是 `components` 属性的一部分。
 
   ```diff
   -<Slider ValueLabelComponent={CustomValueLabel} />
   +<Slider components={{ ValueLabel: CustomValueLabel }} />
   ```
 
-- The `ThumbComponent` prop is not part of the `components` prop.
+- `ThumbComponent` 属性不再是 `components` 属性的一部分。
 
   ```diff
   -<Slider ThumbComponent={CustomThumb} />
@@ -777,7 +818,7 @@ const classes = makeStyles(theme => ({
   +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
   ```
 
-  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  你可以使用我们的 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 ### Stepper 步骤条组件
 
@@ -936,7 +977,7 @@ const classes = makeStyles(theme => ({
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
-  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  你可以使用我们的 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 ### Tooltip
 
