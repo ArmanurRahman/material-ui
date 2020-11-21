@@ -390,7 +390,7 @@ const CustomizedSlider = styled(Slider)(
 ```jsx
 import React from 'react';
 import Slider from '@material-ui/core/Slider';
-// webpack, parcel or else will inject the CSS into the page
+// webpack，parcel 或者其他工具将会把 CSS 注入到该页面
 import styles from './CssModulesSlider.module.css';
 
 export default function CssModulesSlider() {
@@ -454,7 +454,7 @@ export default function CssModulesPriority() {
 
 ```jsx
 import React from 'react';
-// webpack, parcel or else will inject the CSS into the page
+// webpack，parcel 或者其他工具将会把 CSS 注入到该页面
 import styles from './CssModulesSliderDeep1.module.css';
 import Slider from '@material-ui/core/Slider';
 
@@ -490,7 +490,7 @@ export default function CssModulesSliderDeep1() {
 
 ```jsx
 import React from 'react';
-// webpack, parcel or else will inject the CSS into the page
+// webpack，parcel 或者其他工具将会把 CSS 注入到该页面
 import styles from './CssModulesSliderDeep2.module.css';
 import Slider from '@material-ui/core/Slider';
 
